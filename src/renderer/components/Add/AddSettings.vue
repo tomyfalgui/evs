@@ -1,27 +1,21 @@
 <template>
-	<div>
-		<div class="add" @drop.prevent.stop="handleDrop" @dragenter.prevent.stop="handleDragOver" @dragover.prevent.stop="handleDragOver"
-		@dragleave.prevent.stop="handleDragLeave" :class="dragging && 'opaque'">
-			<span>
-				+
-			</span>
-			<h3>Drop your excel file here to add a party group</h3>
-			<div>
-				<div>
-					<div>
-						<div>you</div>
-					</div>
-					<input type="text" placeholder="Username" v-model="username">
-				</div>
-				<div>
-					<div>
-						<div @click="toggleType">eye</div>
-					</div>
-					<input type="password" placeholder="Password" v-model="password" ref="passwordInput">
-				</div>
+	<div class="add" @drop.prevent.stop="handleDrop" @dragenter.prevent.stop="handleDragOver" @dragover.prevent.stop="handleDragOver"
+	@dragleave.prevent.stop="handleDragLeave" :class="dragging && 'opaque'">
+		<span class="add__sign">
+			+
+		</span>
+		<h3 class="add__note">Drop your excel file here to add a party group</h3>
+		<div class="add__inputs">
+			<div class="add__input">
+				<span>you</span>
+				<input type="text" placeholder="Username" v-model="username">
 			</div>
-			<small tooltip="A unique username and secure password is needed to vote for a party group." tooltip-position="bottom">What is this?</small>
+			<div class="add__input">
+				<span @click="toggleType">eye</span>
+				<input type="password" placeholder="Password" v-model="password" ref="passwordInput">
+			</div>
 		</div>
+		<small tooltip="A unique username and secure password is needed to vote for a party group." tooltip-position="bottom">What is this?</small>
 	</div>
 </template>
 
@@ -195,7 +189,15 @@ export default {
 
 
 
-<style scoped>
+<style scoped lang="scss">
+.add {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
 [tooltip] {
   position: relative;
   cursor: help;

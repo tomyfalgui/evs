@@ -26,7 +26,7 @@
 				</router-link>
 			</li>
 			<li class="navbar__list-item navbar__list-item--right" @click="moveToLogin" >
-				<router-link :to="{path: '/'}" class="navbar__list-item-link" >
+				<router-link :to="{path: '/'}" class="navbar__list-item-link" exact>
 					Exit
 				</router-link>
 			</li>
@@ -92,5 +92,9 @@ export default {
       }
     }
   }
+}
+
+.router-link-active {
+  color: yellow;
 }
 </style>

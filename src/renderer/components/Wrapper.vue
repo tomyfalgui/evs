@@ -15,6 +15,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 </style>
