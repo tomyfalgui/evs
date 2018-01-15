@@ -1,18 +1,17 @@
 <template>
-	<div>
-		<nav-bar></nav-bar>
+	<wrapper>
 		<admin></admin>
-	</div>
+	</wrapper>
 </template>
 
 <script>
 import Admin from './AdminSetting'
-import NavBar from '../NavBar'
+import Wrapper from '../Wrapper'
 
 export default {
   components: {
     Admin,
-    NavBar
+    Wrapper
   }
 }
 </script>

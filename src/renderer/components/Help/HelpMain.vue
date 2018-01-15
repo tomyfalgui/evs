@@ -1,20 +1,18 @@
 <template>
-	<div>
-	<nav-bar></nav-bar>
-	<help></help>
-
-	</div>
+	<wrapper>
+		<help></help>
+	</wrapper>
 </template>
 
 
 <script>
 import Help from './Help'
-import NavBar from '../NavBar'
+import Wrapper from '../Wrapper'
 
 export default {
   components: {
     Help,
-    NavBar
+    Wrapper
   }
 }
 </script>

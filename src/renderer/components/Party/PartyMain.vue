@@ -1,18 +1,17 @@
 <template>
-	<div>
-		<nav-bar></nav-bar>
+	<wrapper>
 		<party></party>
-	</div>
+	</wrapper>
 </template>
 
 
 <script>
 import Party from './PartySettings'
-import NavBar from '../NavBar'
+import Wrapper from '../Wrapper'
 export default {
   components: {
     Party,
-    NavBar
+    Wrapper
   }
 }
 </script>

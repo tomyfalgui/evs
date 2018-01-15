@@ -1,18 +1,17 @@
 <template>
-	<div>
-			<nav-bar></nav-bar>
+	<wrapper>
 			<add></add>
-	</div>
+	</wrapper>
 </template>
 
 <script>
 import Add from './AddSettings'
-import NavBar from '../NavBar'
+import Wrapper from '../Wrapper'
 
 export default {
   components: {
     Add,
-    NavBar
+    Wrapper
   },
   mounted() {
     console.log(this.$router)
