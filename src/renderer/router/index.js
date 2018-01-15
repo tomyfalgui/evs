@@ -13,22 +13,22 @@ export default new Router({
 		{
 			path: '/settings',
 			name: 'settings',
-			component: require('@/components/Settings').default
+			component: require('@/components/Add/AddMain').default
 		},
 		{
 			path: '/help',
 			name: 'help',
-			component: require('@/components/Help').default
+			component: require('@/components/Help/HelpMain').default
 		},
 		{
 			path: '/admin',
 			name: 'admin',
-			component: require('@/components/AdminSetting').default
+			component: require('@/components/Admin/AdminMain').default
 		},
 		{
 			path: '/parties',
 			name: 'parties',
-			component: require('@/components/PartySettings').default
+			component: require('@/components/Party/PartyMain').default
 		},
 		{
 			path: '/voting',

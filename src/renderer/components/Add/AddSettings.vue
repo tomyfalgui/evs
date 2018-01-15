@@ -1,27 +1,26 @@
 <template>
-	<div class="right container">
-		<div class="gear" @click="navigateToHelp">? Help</div>
+	<div>
 		<div class="add" @drop.prevent.stop="handleDrop" @dragenter.prevent.stop="handleDragOver" @dragover.prevent.stop="handleDragOver"
 		@dragleave.prevent.stop="handleDragLeave" :class="dragging && 'opaque'">
 			<span>
 				+
 			</span>
 			<h3>Drop your excel file here to add a party group</h3>
-			<div class="form-row">
-				<div class="input-group col-md-6">
-					<div class="input-group-prepend">
-						<div class="input-group-text">you</div>
+			<div>
+				<div>
+					<div>
+						<div>you</div>
 					</div>
-					<input type="text" class="form-control " placeholder="Username" v-model="username">
+					<input type="text" placeholder="Username" v-model="username">
 				</div>
-				<div class="input-group col-md-6">
-					<div class="input-group-prepend">
-						<div class="input-group-text"  @click="toggleType">eye</div>
+				<div>
+					<div>
+						<div @click="toggleType">eye</div>
 					</div>
-					<input type="password" class="form-control" placeholder="Password" v-model="password" ref="passwordInput">
+					<input type="password" placeholder="Password" v-model="password" ref="passwordInput">
 				</div>
 			</div>
-			<small class="form-text text-muted" tooltip="A unique username and secure password is needed to vote for a party group." tooltip-position="bottom">What is this?</small>
+			<small tooltip="A unique username and secure password is needed to vote for a party group." tooltip-position="bottom">What is this?</small>
 		</div>
 	</div>
 </template>
@@ -98,14 +97,41 @@ export default {
             )
             let p, vp, s, treas, ls
             /// STILL DOESNT WORK FIX NULL HANDLE MOST IMPORTANT
-            p = president != 'null' ? { name: president, points: 0 } : false
+            p =
+              president != 'null'
+                ? {
+                    name: president,
+                    points: 0
+                  }
+                : false
             vp =
               vice_president != 'null'
-                ? { name: vice_president, points: 0 }
+                ? {
+                    name: vice_president,
+                    points: 0
+                  }
                 : false
-            s = secretary != 'null' ? { name: secretary, points: 0 } : false
-            treas = treasurer != 'null' ? { name: treasurer, points: 0 } : false
-            ls = lsp != 'null' ? { name: lsp, points: 0 } : false
+            s =
+              secretary != 'null'
+                ? {
+                    name: secretary,
+                    points: 0
+                  }
+                : false
+            treas =
+              treasurer != 'null'
+                ? {
+                    name: treasurer,
+                    points: 0
+                  }
+                : false
+            ls =
+              lsp != 'null'
+                ? {
+                    name: lsp,
+                    points: 0
+                  }
+                : false
             console.log(p, vp, s, treas, ls)
             return {
               lsp: ls,
@@ -113,7 +139,7 @@ export default {
               president: p,
               secretary: s,
               vice_president: vp,
-							treasurer: treas,
+              treasurer: treas
             }
           }
         )
@@ -170,57 +196,6 @@ export default {
 
 
 <style scoped>
-.mycontainer {
-  display: grid;
-  grid-template-columns: 1fr 5fr;
-  height: 100vh;
-}
-
-.left {
-  background-color: #333;
-  display: flex;
-  flex-direction: column;
-  padding-top: 200px;
-  color: whitesmoke;
-}
-
-.left h2 {
-  cursor: pointer;
-}
-
-.right {
-  background-color: #555;
-  display: grid;
-  grid-template-rows: 2fr 5fr 2fr;
-  grid-template-areas: 'h''a''.';
-}
-
-.right .gear {
-  grid-area: h;
-  color: white;
-  font-size: 50px;
-  display: flex;
-  justify-content: flex-end;
-  cursor: pointer;
-}
-
-.right .add {
-  grid-area: a;
-  border: 8px dotted pink;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-size: 150px;
-  cursor: pointer;
-  color: white;
-  transition: opacity 0.2s;
-}
-
-small.form-text {
-  font-size: 20px;
-}
-
 [tooltip] {
   position: relative;
   cursor: help;
@@ -274,6 +249,7 @@ small.form-text {
   margin-top: 8px;
   transform: translateX(-50%) translatey(-100%) rotate(-180deg);
 }
+
 .opaque {
   opacity: 0.4;
 }
