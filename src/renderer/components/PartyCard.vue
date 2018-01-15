@@ -1,7 +1,9 @@
 <template>
 	<div class="card">
 
-		<h1>Party Group id#{{party.id}} <button @click="deleteParty(party.id)">X</button></h1>
+		<h1>Party Group id#{{party.id}}
+			<button @click="deleteParty(party.id)">X</button>
+		</h1>
 		<div class="login">
 			<label for="" class="down">
 				<em>
@@ -28,6 +30,14 @@
 			<li>{{pt.vice_president.name}} - {{pt.vice_president.points}}</li>
 			<li>{{pt.secretary.name}} - {{pt.secretary.points}}</li>
 			<li>{{pt.treasurer.name}} - {{pt.treasurer.points}}</li>
+		</ul>
+		<h2>Abstains</h2>
+		<ul>
+			<li>AbstainPresident: {{party.abstainPresident}}</li>
+			<li>AbstainVicePresident: {{party.abstainVicePresident}}</li>
+			<li>AbstainSecretary: {{party.abstainSecretary}}</li>
+			<li>AbstainTreasurer: {{party.abstainTreasurer}}</li>
+			<li>AbstainLowerSchoolRepresentative: {{party.abstainLowerSchoolRepresentative}}</li>
 		</ul>
 	</div>
 </template>

@@ -17,7 +17,12 @@ const mutations = {
 				id: shortid.generate(),
 				username: payload.username,
 				password: payload.password,
-				parties: payload.party_group
+				parties: payload.party_group,
+				abstainPresident:0,
+				abstainVicePresident:0,
+				abstainSecretary: 0,
+				abstainTreasurer: 0,
+				abstainLowerSchoolRepresentative: 0
 			})
 			.write()
 	},

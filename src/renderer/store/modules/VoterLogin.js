@@ -27,108 +27,67 @@ const mutations = {
 		}
 	},
 	[consts.CONFIRM_VOTES](state, { confirmedParty }) {
-		// make it dry LOL
+		const {
+			id,
+			lsp,
+			president,
+			secretary,
+			treasurer,
+			vice_president
+		} = confirmedParty
 
-		const pointsPres = db
-			.get('party_groups')
-			.find({ id: confirmedParty.id })
-			.get('parties')
-			.map('president')
-			.find({ name: confirmedParty.president })
-			.value()
+		function addPoints(fieldObj, field, abstain = false) {
+			const abstainMapping = {
+				president: 'abstainPresident',
+				vice_president: 'abstainVicePresident',
+				secretary: 'abstainSecretary',
+				treasurer: 'abstainTreasurer',
+				lsp: 'abstainLowerSchoolRepresentative'
+			}
 
-		if (pointsPres) {
-			db
-				.get('party_groups')
-				.find({ id: confirmedParty.id })
-				.get('parties')
-				.map('president')
-				.find({ name: confirmedParty.president })
-				.assign({ points: pointsPres.points + 1 })
-				.write()
+			if (abstain) {
+				const name = abstainMapping[field]
+				const ifPoints = db
+					.get('party_groups')
+					.find({ id })
+					.get(name)
+					.value()
+				console.log(ifPoints)
+
+				if (!isNaN(ifPoints)) {
+					db
+						.get('party_groups')
+						.find({ id })
+						.set(name, ifPoints + 1)
+						.write()
+				}
+			} else {
+				const ifPoints = db
+					.get('party_groups')
+					.find({ id })
+					.get('parties')
+					.map(field)
+					.find({ name: fieldObj.value })
+					.value()
+
+				if (ifPoints) {
+					db
+						.get('party_groups')
+						.find({ id })
+						.get('parties')
+						.map(field)
+						.find({ name: fieldObj.value })
+						.assign({ points: ifPoints.points + 1 })
+						.write()
+				}
+			}
 		}
 
-		// VICE PRESIDENT
-		const pointsVice = db
-			.get('party_groups')
-			.find({ id: confirmedParty.id })
-			.get('parties')
-			.map('vice_president')
-			.find({ name: confirmedParty.vice_president })
-			.value()
-
-		if (pointsVice) {
-			db
-				.get('party_groups')
-				.find({ id: confirmedParty.id })
-				.get('parties')
-				.map('vice_president')
-				.find({ name: confirmedParty.vice_president })
-				.assign({ points: pointsVice.points + 1 })
-				.write()
-		}
-
-		// SECRETARY
-
-		const pointsSec = db
-			.get('party_groups')
-			.find({ id: confirmedParty.id })
-			.get('parties')
-			.map('secretary')
-			.find({ name: confirmedParty.secretary })
-			.value()
-
-		if (pointsSec) {
-			db
-				.get('party_groups')
-				.find({ id: confirmedParty.id })
-				.get('parties')
-				.map('secretary')
-				.find({ name: confirmedParty.secretary })
-				.assign({ points: pointsSec.points + 1 })
-				.write()
-		}
-
-		// TREASURER
-
-		const pointsTreas = db
-			.get('party_groups')
-			.find({ id: confirmedParty.id })
-			.get('parties')
-			.map('treasurer')
-			.find({ name: confirmedParty.treasurer })
-			.value()
-
-		if (pointsTreas) {
-			db
-				.get('party_groups')
-				.find({ id: confirmedParty.id })
-				.get('parties')
-				.map('treasurer')
-				.find({ name: confirmedParty.treasurer })
-				.assign({ points: pointsTreas.points + 1 })
-				.write()
-		}
-
-		// LSP
-		const pointsLSP = db
-			.get('party_groups')
-			.find({ id: confirmedParty.id })
-			.get('parties')
-			.map('lsp')
-			.find({ name: confirmedParty.lsp })
-			.value()
-
-		if (pointsLSP) {
-			db
-				.get('party_groups')
-				.find({ id: confirmedParty.id })
-				.get('parties')
-				.map('lsp')
-				.find({ name: confirmedParty.lsp })
-				.assign({ points: pointsLSP.points + 1 })
-				.write()
-		}
+		addPoints(president, 'president', president.abstain)
+		addPoints(vice_president, 'vice_president', vice_president.abstain)
+		addPoints(secretary, 'secretary', secretary.abstain)
+		addPoints(treasurer, 'treasurer', treasurer.abstain)
+		addPoints(lsp, 'lsp', lsp.abstain)
 	}
 }
 const actions = {}

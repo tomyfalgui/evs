@@ -85,11 +85,26 @@ export default {
       } = this
 
       this.$store.commit(this.$const.VOTE_FIRST, {
-        president,
-        vice_president,
-        secretary,
-        treasurer,
-        lsp,
+        president: {
+          abstain: president === 'abstain' && true,
+          value: president
+        },
+        vice_president: {
+          abstain: vice_president === 'abstain' && true,
+          value: vice_president
+        },
+        secretary: {
+          abstain: secretary === 'abstain' && true,
+          value: secretary
+        },
+        treasurer: {
+          abstain: treasurer === 'abstain' && true,
+          value: treasurer
+        },
+        lsp: {
+          abstain: lsp === 'abstain' && true,
+          value: lsp
+        },
         id: party_group.id
       })
       this.$router.push('/confirmation')

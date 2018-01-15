@@ -74,7 +74,6 @@
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.4",
-    "cypress": "1.4.1",
     "del": "^3.0.0",
     "devtron": "^1.4.0",
     "electron": "^1.7.5",

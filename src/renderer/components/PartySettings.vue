@@ -43,12 +43,22 @@ export default {
       this.$store.commit(this.$const.DEAUTHORIZE)
     },
     deleteParty(id) {
-      console.log(this.parties)
-
-      this.parties = this.parties.filter(el => el.id !== id)
-      this.$store.commit(this.$const.DELETE_PARTY, {
-        id
+      const a = this.$electron.remote.dialog.showMessageBox({
+        type: 'question',
+        buttons: ['No', 'Yes'],
+        defaultId: 0,
+        title: 'Delete Party Group?',
+        message: 'Delete Party Group?',
+        cancelId: 0,
+        detail: 'Are you sure you want to delete the Party Group?'
       })
+
+      if (a) {
+        this.parties = this.parties.filter(el => el.id !== id)
+        this.$store.commit(this.$const.DELETE_PARTY, {
+          id
+        })
+      }
     }
   }
 }

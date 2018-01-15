@@ -113,7 +113,7 @@ export default {
               president: p,
               secretary: s,
               vice_president: vp,
-              treasurer: treas
+							treasurer: treas,
             }
           }
         )
