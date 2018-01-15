@@ -26,8 +26,5 @@ install:
 build_script:
   - npm run build
 
-environment:
-  GH_TOKEN:
-    secure: 0d7484b1ba4b7028d4b5bf3c6174694dd7835f76
 
 test: off
