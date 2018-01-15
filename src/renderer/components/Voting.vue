@@ -1,7 +1,5 @@
 <template>
 	<div>
-		<h1 @click="back">@click="back"</h1>
-
 		<form @submit.prevent="submit">
 			<fieldset v-for="party in party_group.parties" :key="party.party_name">
 				<legend>{{party.party_name}}</legend>
