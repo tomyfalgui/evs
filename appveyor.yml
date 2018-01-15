@@ -12,6 +12,7 @@ cache:
   - node_modules
   - '%APPDATA%\npm-cache'
   - '%USERPROFILE%\.electron'
+  - '%USERPROFILE%\AppData\Local\Yarn\cache'
 
 
 init:
@@ -20,11 +21,11 @@ init:
 install:
   - ps: Install-Product node 9 x64
   - git reset --hard HEAD
-  - npm install
+  - yarn
   - node --version
 
 build_script:
-  - npm run build
+  - yarn build
 
 
 test: off
