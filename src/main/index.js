@@ -64,7 +64,11 @@ autoUpdater.logger.transports.file.level = 'info'
 log.info('App starting...')
 
 app.on('ready', () => {
-	if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
+	if (process.env.NODE_ENV === 'production') { 
+		log.info("app is in productionmode")
+		console.log("Just checking")
+		autoUpdater.checkForUpdates() 
+	}
 })
 
 autoUpdater.on('checking-for-update', () => {
