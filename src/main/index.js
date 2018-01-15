@@ -1,5 +1,7 @@
 import { app, BrowserWindow } from 'electron'
+import log from 'electron-log'
 
+require('electron-debug')({ showDevTools: true, enabled: true })
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -57,10 +59,29 @@ app.on('activate', () => {
 
 import { autoUpdater } from 'electron-updater'
 
-autoUpdater.on('update-downloaded', () => {
-	autoUpdater.quitAndInstall()
-})
+autoUpdater.logger = log
+autoUpdater.logger.transports.file.level = 'info'
+log.info('App starting...')
 
 app.on('ready', () => {
 	if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
+})
+
+autoUpdater.on('checking-for-update', () => {
+	log.info('Checking for updates...')
+})
+autoUpdater.on('update-available', info => {
+	log.info('Update is available')
+})
+autoUpdater.on('update-not-available', info => {
+	log.info('Update is unavailable')
+})
+autoUpdater.on('error', err => {
+	log.info('Error')
+})
+autoUpdater.on('download-progress', progressObj => {
+	log.info('Downloading')
+})
+autoUpdater.on('update-downloaded', info => {
+	autoUpdater.quitAndInstall()
 })

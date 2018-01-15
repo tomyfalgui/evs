@@ -12,19 +12,26 @@
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
     "dev": "node .electron-vue/dev-runner.js",
     "pack": "npm run pack:main && npm run pack:renderer",
-    "pack:main":
-      "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
-    "pack:renderer":
-      "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
+    "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
+    "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
     "postinstall": ""
   },
   "build": {
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "tomyfalgui",
+        "repo": "evs"
+      }
+    ],
     "productName": "evs",
     "appId": "com.tomyfalgui.evs",
     "directories": {
       "output": "build"
     },
-    "files": ["dist/electron/**/*"],
+    "files": [
+      "dist/electron/**/*"
+    ],
     "dmg": {
       "contents": [
         {
@@ -45,7 +52,9 @@
     },
     "win": {
       "icon": "build/icons/icon.ico",
-      "publish": ["github"]
+      "publish": [
+        "github"
+      ]
     },
     "linux": {
       "icon": "build/icons"
@@ -83,7 +92,7 @@
     "devtron": "^1.4.0",
     "electron": "^1.7.5",
     "electron-builder": "^19.19.1",
-    "electron-debug": "^1.4.0",
+    "electron-debug": "1.5.0",
     "electron-devtools-installer": "^2.2.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
