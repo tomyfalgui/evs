@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "Tomas Alejandro V. Falgui III <tomyfalguiiii@yahoo.com>",
   "description": "A customizable Electronic Voting System",
-  "license": null,
+  "license": "MIT",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -44,7 +44,8 @@
       "icon": "build/icons/icon.icns"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/icon.ico",
+      "publish": ["github"]
     },
     "linux": {
       "icon": "build/icons"
@@ -52,6 +53,8 @@
   },
   "dependencies": {
     "bootstrap": "4.0.0-beta.3",
+    "electron-log": "2.2.14",
+    "electron-updater": "2.18.2",
     "jquery": "3.2.1",
     "lodash": "4.17.4",
     "lowdb": "1.0.0",
