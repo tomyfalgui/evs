@@ -11,6 +11,11 @@ const mutations = {
 		const { username, password } = db.get('settings.admin').value()
 		state.username = username
 		state.password = password
+	}, [consts.CHANGE_ADMIN_USERNAME](state, { newUsername }) {
+		console.log('CHANGING USERNAME')
+		db.set('settings.admin.username', newUsername).write()
+	}, [consts.CHANGE_ADMIN_PASSWORD](state, { newPassword }) {
+		db.set('settings.admin.password', newPassword).write()
 	}
 }
 const actions = {}
