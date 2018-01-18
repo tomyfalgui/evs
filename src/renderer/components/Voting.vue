@@ -1,83 +1,68 @@
 <template>
-	<div style="padding-top: 30px">
+	<div style="padding-top: 30px;overflow:hidden;">
 		<el-steps :active="active" finish-status="success" align-center>
 			<el-step title="Step 1" description="Select your candidates"></el-step>
 			<el-step title="Step 2" description="Confirm your candidates"></el-step>
 			<el-step title="Step 3" description="Exit Quietly"></el-step>
 		</el-steps>
 		<form @submit.prevent="submit">
-			<fieldset v-for="party in party_group.parties" :key="party.party_name">
-				<legend>{{party.party_name}}</legend>
-				<div>
-				<label :for="party.president.name" v-if="party.president.name">
-					{{party.president.name}}
-					<input type="radio" name="president" :id="party.president.name" :value="party.president.name" v-model="president">
-				</label>
+		
+             <!-- Pres -->
+      <el-card class="box-card" v-for="party in party_group.parties" :key="party.party_name">
+        <div slot="header">
+           <h2>{{toTitleCase(party.party_name)}} </h2>
+        </div>
+        <div>
 
-				<label v-else>
-					President
-					<input type="radio" disabled>
-				</label>
-				<label :for="party.vice_president.name" v-if="party.vice_president.name">
-					{{party.vice_president.name}}
-					<input type="radio" name="vice_president" :id="party.vice_president.name" :value="party.vice_president.name" v-model="vice_president">
-				</label>
-				<label v-else>
-					Vice President
-					<input type="radio" disabled>
-				</label>
-				<label :for="party.secretary.name" v-if="party.secretary.name">
-					{{party.secretary.name}}
-					<input type="radio" name="secretary" :id="party.secretary.name" :value="party.secretary.name" v-model="secretary">
-				</label>
-				<label v-else>
-					Secretary
-					<input type="radio" disabled>
-				</label>
-				<label :for="party.treasurer.name" v-if="party.treasurer.name">
-					{{party.treasurer.name}}
-					<input type="radio" name="treasurer" :id="party.treasurer.name" :value="party.treasurer.name" v-model="treasurer">
-				</label>
-				<label v-else>
-					Treasurer
-					<input type="radio" disabled>
-				</label>
-				<label :for="party.lsp.name" v-if="party.lsp.name">
-					{{party.lsp.name}}
-					<input type="radio" name="lsp" :id="party.lsp.name" :value="party.lsp.name" v-model="lsp">
-				</label>
-				<label v-else>
-					Lower School Representative
-				</label>
-			</div>
-			</fieldset>
-			<fieldset>
-				<legend>Abstain</legend>
-				<div>
-				<label>
-					Abstain
-					<input type="radio" name="president" v-model="president" value="abstain">
-				</label>
-				<label>
-					Abstain
-					<input type="radio" name="vice_president" v-model="vice_president" value="abstain">
-				</label>
-				<label>
-					Abstain
-					<input type="radio" name="secretary" v-model="secretary" value="abstain">
-				</label>
-				<label>
-					Abstain
-					<input type="radio" name="treasurer" v-model="treasurer" value="abstain">
-				</label>
-				<label>
-					Abstain
-					<input type="radio" name="lsp" v-model="lsp" value="abstain">
-				</label>
-				</div>
-			</fieldset>
 
-			<button type="submit" @click="submit">Vote</button>
+        <el-radio v-model="president" :label="party.president.name" v-if="party.president.name" size="medium">
+          {{toTitleCase(party.president.name)}}
+        </el-radio>
+
+        <el-radio v-else disabled size="medium">President</el-radio>
+      <!-- VP -->
+        <el-radio v-model="vice_president" :label="party.vice_president.name" v-if="party.vice_president.name" size="medium">
+           {{toTitleCase(party.vice_president.name)}}
+        </el-radio>
+
+        <el-radio v-else disabled  size="medium">Vice President</el-radio>
+     <!-- SEC -->
+        <el-radio v-model="secretary" :label="party.secretary.name" v-if="party.secretary.name" size="medium">
+           {{toTitleCase(party.secretary.name)}}
+        </el-radio>
+
+        <el-radio v-else disabled  size="medium">Secretary</el-radio>
+
+     <!-- Treasurer -->
+        <el-radio v-model="treasurer" :label="party.treasurer.name" v-if="party.treasurer.name" size="medium">
+           {{toTitleCase(party.treasurer.name)}}
+        </el-radio>
+        <el-radio v-else disabled size="medium">Treasurer</el-radio>
+             <!-- LSP -->
+        <el-radio v-model="lsp" :label="party.lsp.name" v-if="party.lsp.name" size="medium">
+           {{toTitleCase(party.lsp.name)}}
+        </el-radio>
+        <el-radio v-else disabled  size="medium">Lower School Representative</el-radio>
+    </div>
+      </el-card>
+	
+
+		
+<el-card class="box-card">
+      <div slot="header">
+           <h2>Abstain</h2>
+        </div>
+        <div>
+        <el-radio v-model="president" label="abstain">Abstain</el-radio>
+        <el-radio v-model="vice_president" label="abstain">Abstain</el-radio>
+        <el-radio v-model="secretary" label="abstain">Abstain</el-radio>
+        <el-radio v-model="treasurer" label="abstain">Abstain</el-radio>
+        <el-radio v-model="lsp" label="abstain">Abstain</el-radio>
+        </div>
+</el-card>
+
+
+			<el-button type="primary" @click="submit">Vote</el-button>
 		</form>
 	</div>
 </template>
@@ -96,10 +81,14 @@ export default {
       active: 0
     }
   },
+
   methods: {
     back() {
       this.$router.push('/')
     },
+    toTitleCase(str){
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+},
     submit() {
       const {
         president,
@@ -145,17 +134,26 @@ export default {
 </script>
 
 
-<style>
-fieldset {
-  padding: 8px 16px;
-  width: 1100px;
-  margin: 0 auto;
+<style scoped>
+.box-card {
+  width: 80%;
+  margin: 40px auto;
 }
-fieldset > div {
-  display: flex;
+button {
+ text-transform: uppercase;
+ font-variant: small-caps;
+ letter-spacing: 0.1px;
+  font-size: 40px;
+
+  display: block;
+  margin: 40px auto;
 }
 
-fieldset > div * {
-  flex: 1;
+.el-radio__label {
+  font-size:18px;
+} 
+
+h2 {
+  font-size:30px;
 }
 </style>
