@@ -1,9 +1,8 @@
 import { app, BrowserWindow } from 'electron'
 import log from 'electron-log'
 
-require('electron-debug')({ showDevTools: true, enabled: true })
 /**
- * Set `__static` path to static files in production
+ *  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
  */
 if (process.env.NODE_ENV !== 'development') {
@@ -68,7 +67,9 @@ app.on('ready', () => {
 		log.info("app is in productionmode")
 		console.log("Just checking")
 		autoUpdater.checkForUpdates() 
-	}
+	} else {
+    console.log('haha')
+  }
 })
 
 autoUpdater.on('checking-for-update', () => {

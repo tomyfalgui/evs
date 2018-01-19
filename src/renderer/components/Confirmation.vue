@@ -53,7 +53,7 @@
           	<div class="flex margin-top-25">
 
 		<el-button type="primary" @click="confirm" ref="buttonConfirm">Confirm</el-button>
-		<el-button type="text" @click="voteAgain">Vote Again</el-button>
+		<el-button type="text" @click="voteAgain" :disabled="me">Vote Again</el-button>
 		</div>
       </div>
     </el-card>
@@ -69,7 +69,8 @@ export default {
   data() {
     return {
       selectedCandidates: {},
-      active: 1
+      active: 1,
+      me: false
     }
   },
   created() {
@@ -83,7 +84,7 @@ export default {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 },
     confirm() {
-    this.$refs.buttonConfirm.disabled = true
+    this.me = true
       const confirmedParty = { ...this.selectedCandidates }
 
       this.$router.push('/thankyou')

@@ -61,7 +61,7 @@
 			</el-card>
 
 
-			<el-button type="primary button" @click="submit">Vote</el-button>
+			<el-button type="primary" id="button" @click="submit">Vote</el-button>
 		</form>
 	</div>
 </template>
@@ -141,7 +141,7 @@ export default {
   margin: 40px auto;
 }
 
-.button {
+#button {
   text-transform: uppercase;
   font-variant: small-caps;
   letter-spacing: 0.1px;
