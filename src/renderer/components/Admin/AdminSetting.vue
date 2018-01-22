@@ -54,29 +54,60 @@ export default {
       const { username, password } = this.$store.state.SettingsAdmin
       this.checkers.username = username
       this.checkers.password = password
+
+      this.username.old = ''
+      this.username.new = ''
+      this.username.cnew = ''
+      this.password.old = ''
+      this.password.new = ''
+      this.password.cnew = ''
     },
     changeUsername() {
       const { username } = this.checkers
       if (this.username.old === username) {
         if (this.username.new === this.username.cnew) {
           if (this.username.new === this.username.old) {
-            // HANDLE USER ERROR
             console.log('username must not be the same')
+            this.$message({
+              message: 'Current username must not be equal to new username',
+              duration: 3000,
+              type: 'error',
+              center: true
+            })
           } else {
             // HANDLE USER Success
             console.log('success username')
+
             this.$store.commit(this.$const.CHANGE_ADMIN_USERNAME, {
               newUsername: this.username.new
+            })
+            this.$message({
+              message: `Succesfully changed username to ${this.username.new}`,
+              duration: 3000,
+              type: 'success',
+              center: true
             })
             this.getAdminLogins()
           }
         } else {
           // HANDLE USER ERROR
           console.log('usernames not equal')
+          this.$message({
+            message: 'Usernames are not equal',
+            duration: 3000,
+            type: 'error',
+            center: true
+          })
         }
       } else {
         // HANDLE USER ERROR
         console.log('old username != new username')
+        this.$message({
+          message: 'Old Username is not correct',
+          duration: 3000,
+          type: 'error',
+          center: true
+        })
       }
     },
     changePassword() {
@@ -85,6 +116,12 @@ export default {
         if (this.password.new === this.password.cnew) {
           if (this.password.new === this.password.old) {
             // HANDLE USER ERROR
+            this.$message({
+              message: 'Current password must not be equal to new password',
+              duration: 3000,
+              type: 'error',
+              center: true
+            })
             console.log('passwords must not be the same')
           } else {
             // HANDLE USER Success
@@ -92,15 +129,33 @@ export default {
             this.$store.commit(this.$const.CHANGE_ADMIN_PASSWORD, {
               newPassword: this.password.new
             })
+            this.$message({
+              message: `Succesfully changed password to ${this.password.new}`,
+              duration: 3000,
+              type: 'success',
+              center: true
+            })
             this.getAdminLogins()
           }
         } else {
           // HANDLE USER ERROR
           console.log('passwords not equal')
+          this.$message({
+            message: 'Passwords are not equal',
+            duration: 3000,
+            type: 'error',
+            center: true
+          })
         }
       } else {
         // HANDLE USER ERROR
         console.log('password old != password new')
+        this.$message({
+          message: 'Old password is not correct',
+          duration: 3000,
+          type: 'error',
+          center: true
+        })
       }
     }
   },

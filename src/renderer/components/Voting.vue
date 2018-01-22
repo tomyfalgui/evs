@@ -156,7 +156,7 @@ export default {
 }
 
 .el-card__body {
-  padding-top: 40px;
+  padding-top: 60px;
 }
 
 h2 {
@@ -173,6 +173,6 @@ h2 {
   position: absolute;
   top: -120%;
   left: 0;
-  font-size: 14 px;
+  font-size: 14px;
 }
 </style>
