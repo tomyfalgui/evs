@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<div class="right-side">
-       <h1>DPS Electronic Voting System</h1>
+       <h1 id="h1ofright">DPS Electronic Voting System</h1>
 			 <p>A project of the DPS Comelec</p>
 			 <el-tag>v0.9.1</el-tag>
 		</div>
@@ -27,7 +27,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -52,6 +51,12 @@ export default {
 
         if (votingBlock.length === 0) {
           // HANDLE USER ERROR HERE
+          this.$message({
+            message: 'Incorrect Credentials. Please try again',
+            duration: 3000,
+            type: 'error',
+            center: true
+          })
           return console.log('NOTHING')
         }
         this.$store.commit(this.$const.SELECT_PARTY, {
@@ -70,7 +75,7 @@ export default {
   mounted() {
     //this.$store.commit(this.$const.CLEAR_SELECTED_PARTY)
     this.getParties()
-	}
+  }
 }
 </script>
 
@@ -100,45 +105,42 @@ html {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-	overflow:hidden;
+  overflow: hidden;
 }
 
 .login {
   display: flex;
-  align-items:center;
+  align-items: center;
   padding-top: 30px;
-	position:relative;
-	padding-left:60px;
+  position: relative;
+  padding-left: 60px;
 }
 
 .svgbaby {
-	position:absolute;
-	bottom:-30px;
-	left:50%;
-	right:0;
-	transform: translateX(-50%);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  right: 0;
+  transform: translateX(-50%);
 }
 
-.svgbabys{
-	position:absolute;
-	left:50%;
-	right:0;
-	top:-30px;
-	transform: rotate(180deg) translateX(50%);
+.svgbabys {
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: -30px;
+  transform: rotate(180deg) translateX(50%);
 }
-
-
 
 .right-side {
-	background-color: #F2F6FC;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	flex-direction:column;
+  background-color: #f2f6fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .right-side > :nth-child(2) {
-	margin-bottom:8px;
+  margin-bottom: 8px;
 }
 </style>
-

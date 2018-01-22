@@ -21,7 +21,8 @@ Array.from(paths, function(v, k) {
 		duration:3000,
 		delay: anime.random(0, 2000),
 		easing: 'easeInOutSine',
-		loop: false
+		loop: true,
+		direction: 'alternate'
 	})
 })
 

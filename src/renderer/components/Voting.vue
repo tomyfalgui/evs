@@ -6,40 +6,41 @@
 			<el-step title="Step 3" description="Exit Quietly"></el-step>
 		</el-steps>
 		<form @submit.prevent="submit">
-			<!-- Pres -->
 			<el-card class="box-card" v-for="party in party_group.parties" :key="party.party_name">
 				<div slot="header">
 					<h2>{{toTitleCase(party.party_name)}} </h2>
 				</div>
 				<div>
-					<el-radio v-model="president" :label="party.president.name" v-if="party.president.name" size="medium">
+			<!-- Pres -->
+					<el-radio v-model="president" :label="party.president.name" v-if="party.president.name" size="medium" class="title" namehere="President">
 						{{toTitleCase(party.president.name)}}
 					</el-radio>
+					<el-radio v-else disabled size="medium" class="title" namehere="President">President</el-radio>
 
-					<el-radio v-else disabled size="medium">President</el-radio>
+
 					<!-- VP -->
-					<el-radio v-model="vice_president" :label="party.vice_president.name" v-if="party.vice_president.name" size="medium">
+					<el-radio v-model="vice_president" :label="party.vice_president.name" v-if="party.vice_president.name" size="medium" class="title" namehere="Vice President">
 						{{toTitleCase(party.vice_president.name)}}
 					</el-radio>
 
-					<el-radio v-else disabled size="medium">Vice President</el-radio>
+					<el-radio v-else disabled size="medium" class="title" namehere="Vice President">Vice President</el-radio>
 					<!-- SEC -->
-					<el-radio v-model="secretary" :label="party.secretary.name" v-if="party.secretary.name" size="medium">
+					<el-radio v-model="secretary" :label="party.secretary.name" v-if="party.secretary.name" size="medium" class="title" namehere="Secretary">
 						{{toTitleCase(party.secretary.name)}}
 					</el-radio>
 
-					<el-radio v-else disabled size="medium">Secretary</el-radio>
+					<el-radio v-else disabled size="medium" class="title" namehere="Secretary">Secretary</el-radio>
 
 					<!-- Treasurer -->
-					<el-radio v-model="treasurer" :label="party.treasurer.name" v-if="party.treasurer.name" size="medium">
+					<el-radio v-model="treasurer" :label="party.treasurer.name" v-if="party.treasurer.name" size="medium" class="title" namehere="Treasurer">
 						{{toTitleCase(party.treasurer.name)}}
 					</el-radio>
-					<el-radio v-else disabled size="medium">Treasurer</el-radio>
+					<el-radio v-else disabled size="medium" class="title" namehere="Treasurer">Treasurer</el-radio>
 					<!-- LSP -->
-					<el-radio v-model="lsp" :label="party.lsp.name" v-if="party.lsp.name" size="medium">
+					<el-radio v-model="lsp" :label="party.lsp.name" v-if="party.lsp.name" size="medium" class="title" namehere="Lower School Representative">
 						{{toTitleCase(party.lsp.name)}}
 					</el-radio>
-					<el-radio v-else disabled size="medium">
+					<el-radio v-else disabled size="medium" class="title" namehere="Lower School Representative">
 						Lower School Representative
 					</el-radio>
 				</div>
@@ -52,11 +53,11 @@
 					<h2>Abstain</h2>
 				</div>
 				<div>
-					<el-radio v-model="president" label="abstain">Abstain</el-radio>
-					<el-radio v-model="vice_president" label="abstain">Abstain</el-radio>
-					<el-radio v-model="secretary" label="abstain">Abstain</el-radio>
-					<el-radio v-model="treasurer" label="abstain">Abstain</el-radio>
-					<el-radio v-model="lsp" label="abstain">Abstain</el-radio>
+					<el-radio v-model="president" label="abstain" class="title" namehere="President">Abstain</el-radio>
+					<el-radio v-model="vice_president" label="abstain" class="title" namehere="Vice President">Abstain</el-radio>
+					<el-radio v-model="secretary" label="abstain" class="title" namehere="Secretary">Abstain</el-radio>
+					<el-radio class="title" namehere="Treasurer" v-model="treasurer" label="abstain">Abstain</el-radio>
+					<el-radio class="title" namehere="Lower School Representative" v-model="lsp" label="abstain">Abstain</el-radio>
 				</div>
 			</el-card>
 
@@ -151,10 +152,27 @@ export default {
 }
 
 .el-radio__label {
-  font-size: 18px;
+  font-size: 20px;
+}
+
+.el-card__body {
+  padding-top: 40px;
 }
 
 h2 {
   font-size: 30px;
+}
+
+.title {
+  position: relative;
+}
+
+.title::before {
+  display: block;
+  content: attr(namehere);
+  position: absolute;
+  top: -120%;
+  left: 0;
+  font-size: 14 px;
 }
 </style>

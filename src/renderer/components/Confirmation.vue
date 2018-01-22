@@ -14,7 +14,7 @@
             <el-col :span="12">
              <u>President:</u>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="12">
               <strong>{{toTitleCase(selectedCandidates.president.value)}}</strong>
             </el-col>
           </el-row>
@@ -22,7 +22,7 @@
             <el-col :span="12">
               <u>Vice President:</u>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="12">
               <strong>{{toTitleCase(selectedCandidates.vice_president.value)}}</strong>
             </el-col>
           </el-row>
@@ -30,7 +30,7 @@
             <el-col :span="12">
              <u>Secretary:</u>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="12">
               <strong>{{toTitleCase(selectedCandidates.secretary.value)}}</strong>
             </el-col>
           </el-row>
@@ -38,7 +38,7 @@
             <el-col :span="12">
               <u>Treasurer:</u>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="12">
              <strong> {{toTitleCase(selectedCandidates.treasurer.value)}}</strong>
             </el-col>
           </el-row>
@@ -46,7 +46,7 @@
             <el-col :span="12">
               <u>Lower School Representative:</u>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="12">
               <strong>{{toTitleCase(selectedCandidates.lsp.value)}}</strong>
             </el-col>
           </el-row>
@@ -80,11 +80,13 @@ export default {
     voteAgain() {
       this.$router.push('/voting')
     },
-        toTitleCase(str){
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-},
+    toTitleCase(str) {
+      return str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+      })
+    },
     confirm() {
-    this.me = true
+      this.me = true
       const confirmedParty = { ...this.selectedCandidates }
 
       this.$router.push('/thankyou')
@@ -140,12 +142,12 @@ h1 > span {
 }
 
 strong {
-font-size:25px;
+  font-size: 25px;
 }
 
 u {
-font-size:25px;
-text-decoration:none;
+  font-size: 25px;
+  text-decoration: none;
 }
 .el-row {
   margin-bottom: 12px;
