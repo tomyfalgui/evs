@@ -1,6 +1,6 @@
 {
   "name": "evs",
-  "version": "0.11.9",
+  "version": "0.12.0",
   "author": "Tomas Alejandro V. Falgui III <tomyfalguiiii@yahoo.com>",
   "description": "A customizable Electronic Voting System",
   "license": "MIT",
@@ -12,10 +12,13 @@
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
     "dev": "node .electron-vue/dev-runner.js",
     "pack": "npm run pack:main && npm run pack:renderer",
-    "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
-    "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
+    "pack:main":
+      "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
+    "pack:renderer":
+      "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
     "postinstall": "",
-    "ship": "node .electron-vue/build.js && electron-builder --publish=always --win",
+    "ship":
+      "node .electron-vue/build.js && electron-builder --publish=always --win",
     "exit": "useless"
   },
   "build": {
@@ -31,9 +34,7 @@
     "directories": {
       "output": "build"
     },
-    "files": [
-      "dist/electron/**/*"
-    ],
+    "files": ["dist/electron/**/*"],
     "dmg": {
       "contents": [
         {
@@ -54,9 +55,7 @@
     },
     "win": {
       "icon": "build/icons/icon.ico",
-      "publish": [
-        "github"
-      ]
+      "publish": ["github"]
     },
     "linux": {
       "icon": "build/icons"
