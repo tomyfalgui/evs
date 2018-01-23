@@ -7,8 +7,9 @@
 		</el-steps>
 		<form @submit.prevent="submit">
 			<el-card class="box-card" v-for="party in party_group.parties" :key="party.party_name">
-				<div slot="header">
+				<div slot="header" class="gimmehead">
 					<h2>{{toTitleCase(party.party_name)}} </h2>
+					<el-button @click="thisparty(party.party_name)">Vote For This Party</el-button>
 				</div>
 				<div>
 			<!-- Pres -->
@@ -69,6 +70,7 @@
 
 
 <script>
+import _ from 'lodash'
 export default {
   data() {
     return {
@@ -90,6 +92,37 @@ export default {
       return str.replace(/\w\S*/g, function(txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
       })
+    },
+    thisparty(party_name) {
+      const party = _.find(this.party_group.parties, { party_name })
+      const { lsp, president, vice_president, secretary, treasurer } = party
+
+      if (!president) {
+        console.log('FALSE PRESIDENT')
+      } else {
+        this.president = president.name
+      }
+
+      if (!vice_president) {
+        console.log('FALSE Vice')
+      } else {
+        this.vice_president = vice_president.name
+      }
+      if (!secretary) {
+        console.log('FALSE Sec')
+      } else {
+        this.secretary = secretary.name
+      }
+      if (!treasurer) {
+        console.log('FALSE Treasurer')
+      } else {
+        this.treasurer = treasurer.name
+      }
+      if (!lsp) {
+        console.log('FALSE lsp')
+      } else {
+        this.lsp = lsp.name
+      }
     },
     submit() {
       const {
@@ -156,7 +189,7 @@ export default {
 }
 
 .el-card__body {
-  padding-top: 60px;
+  padding-top: 50px;
 }
 
 h2 {
@@ -171,8 +204,13 @@ h2 {
   display: block;
   content: attr(namehere);
   position: absolute;
-  top: -120%;
+  top: -100%;
   left: 0;
   font-size: 14px;
+}
+
+.gimmehead {
+  display: flex;
+  justify-content: space-between;
 }
 </style>
