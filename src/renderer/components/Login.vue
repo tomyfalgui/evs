@@ -75,6 +75,7 @@ export default {
   mounted() {
     //this.$store.commit(this.$const.CLEAR_SELECTED_PARTY)
     this.getParties()
+    
   }
 }
 </script>

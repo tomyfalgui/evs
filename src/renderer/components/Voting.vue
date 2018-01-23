@@ -204,6 +204,7 @@ h2 {
   display: block;
   content: attr(namehere);
   position: absolute;
+  margin-bottom: 3px;
   top: -100%;
   left: 0;
   font-size: 14px;
