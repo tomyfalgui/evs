@@ -93,8 +93,13 @@ export default {
       this.$store.commit(this.$const.CONFIRM_VOTES, {
         confirmedParty
       })
-      this.$store.commit(this.$const.FETCH_PARTY_GROUP)
-      this.$firedb.ref().push(confirmedParty)
+			this.$store.commit(this.$const.FETCH_PARTY_GROUP)
+			try {
+				
+				this.$firedb.ref().push(confirmedParty)
+			} catch (error) {
+				console.error(error)
+			}
     }
   }
 }

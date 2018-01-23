@@ -81,14 +81,6 @@ export default {
             secretary,
             treasurer
           }) => {
-            console.log(
-              lsp,
-              party_name,
-              president,
-              vice_president,
-              secretary,
-              treasurer
-            )
             let p, vp, s, treas, ls
             /// STILL DOESNT WORK FIX NULL HANDLE MOST IMPORTANT
             p =
@@ -126,7 +118,6 @@ export default {
                     points: 0
                   }
                 : false
-            console.log(p, vp, s, treas, ls)
             return {
               lsp: ls,
               party_name: party_name,

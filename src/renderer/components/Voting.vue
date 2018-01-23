@@ -137,23 +137,28 @@ export default {
       this.$store.commit(this.$const.VOTE_FIRST, {
         president: {
           abstain: president === 'abstain' && true,
-          value: president
+          value: president,
+          position: 'president'
         },
         vice_president: {
           abstain: vice_president === 'abstain' && true,
-          value: vice_president
+          value: vice_president,
+          position: 'vice_president'
         },
         secretary: {
           abstain: secretary === 'abstain' && true,
-          value: secretary
+          value: secretary,
+          position: 'secretary'
         },
         treasurer: {
           abstain: treasurer === 'abstain' && true,
-          value: treasurer
+          value: treasurer,
+          position: 'treasurer'
         },
         lsp: {
           abstain: lsp === 'abstain' && true,
-          value: lsp
+          value: lsp,
+          position: 'lsp'
         },
         id: party_group.id
       })

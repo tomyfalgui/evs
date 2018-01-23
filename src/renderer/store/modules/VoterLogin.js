@@ -52,7 +52,6 @@ const mutations = {
           .find({ id })
           .get(name)
           .value()
-        console.log(ifPoints)
 
         if (!isNaN(ifPoints)) {
           db
